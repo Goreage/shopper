@@ -1,0 +1,32 @@
+/**
+ * @Controller用于标记在一个类上，使用它标记的类就是一个SpringMvc Controller对象，
+ * 	分发处理器会扫描使用该注解的类的方法，并检测该方法是否使用了@RequestMapping注解。
+	@Controller只是定义了一个控制器类，而使用@RequestMapping注解的方法才是处理请求的处理器。
+	@Controller标记在一个类上还不能真正意义上说它就是SpringMvc的控制器，应为这个时候Spring还不认识它，
+	这个时候需要把这个控制器交给Spring来管理。有两种方式可以管理：在spring-web.xml中写明扫描的路径
+	@Controller表示在tomcat启动的时候，把这个类作为一个控制器加载到Spring的Bean工厂，
+	如果不加，就是一个普通的类，和Spring没有半毛钱关系。
+ * @author Controller详解
+ *
+ <!-- 开启注解模式驱动 -->
+ 
+<mvc:annotation-driven></mvc:annotation-driven>
+ 
+<!-- 扫包 -->
+ 
+<context:component-scan base-package=*"com.blogMgr.*"*></context:component-scan>
+ */
+ 
+ @RequestMapping 的作用就是提供文件的跳转，提供文件的路径获得想要的资源，@RequestMapping就是一个映射路径
+ 
+ @ResponseBody 在Controller里面，我们经常可以看到@ResponseBody这个注解，它的意思很简单，
+ 		就是说明这个方法返回的东西会通过IO流的方式写入到浏览器。
+ 
+ @Autowired	
+ 　在使用@Autowired时，首先在容器中查询对应类型的bean
+
+　　　　如果查询结果刚好为一个，就将该bean装配给@Autowired指定的数据
+
+　　　　如果查询的结果不止一个，那么@Autowired会根据名称来查找。
+
+　　　　如果查询的结果为空，那么会抛出异常。解决方法时，使用required=false
