@@ -2,20 +2,17 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ninthfour.shopper.dao.ShopDao">
-	<!-- 添加店铺时伴随着图片的插入存储 useGenerateKeys意思通过jdbc自增  在图片的插入
-	是获取shop_id 确保是否是同一商品  useGenerateKeys意思是主键， keyProperty绑定的JavaBean-->
-	<select id="insertShop" useGenerateKeys="true" 
-	useGenerateKeys="shop_id" keyProperty="shopId">
-		SELECT
-			area_id,
-			area_name,
-			kkk
-			priority,
-			create_time,
-			last_edit_time
-		FROM
-			tb_area
-		ORDER BY
-			priority DESC
+	<!-- 添加店铺时伴随着图片的插入存储 useGenerateKeys意思通过jdbc自增 在图片的插入 是获取shop_id 确保是否是同一商品 
+		useGenerateKeys意思是主键， keyProperty绑定的JavaBean -->
+	<select id="insertShop" useGenerateKeys="true"
+		useGenerateKeys="shop_id" keyProperty="shopId">
+		INSERT INTO tb_shop(
+		owner_id,area_id,shop_category_id,shop_name,shop_desc,
+		shop_addr,phone,shop_img,priority,create_time,enable_status,
+		last_edit_time,advice)
+		VALUES(
+		#{owner.userId},#{area.areaId},#{shopCategory.shopCategoryId},#{shopName},#{shopDesc},
+		#{shopAddr},#{phone},#{shopImg},#{priority},#{createTime},#{enableStatus},
+		#{lastEditTime},#{advice})
 	</select>
 </mapper>   
